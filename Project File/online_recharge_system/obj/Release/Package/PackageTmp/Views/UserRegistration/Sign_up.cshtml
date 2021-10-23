@@ -1,0 +1,113 @@
+﻿@using System.Web.UI.WebControls
+@model online_recharge_system.Models.UserRegistration
+@{
+    ViewBag.Title = "SIGN UP";
+}
+@{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+<section style="background: radial-gradient(circle, rgba(238,232,174,1) 0%, rgba(148,184,233,1) 100%);">
+    <center>
+        <br /><br /><br />
+        <div class="col-lg-4 col-md-4 col-sm-4">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="card">
+                    <h1 class="card-header bg-danger text-white">USER SIGN UP</h1>
+                    <center>
+                        <img class="img-fluid" src="/images/teamlogo.png" alt="" width="72" height="72">
+                    </center>
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="card-group">
+                            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "sr-only col" })
+                            <div class=" col">
+                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "FULL NAME" } })
+                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="card-group">
+                            @Html.LabelFor(model => model.phone_number, htmlAttributes: new { @class = "sr-only" })
+                            <div class=" col">
+                                @Html.EditorFor(model => model.phone_number, new { htmlAttributes = new { @class = "form-control ", @PlaceHolder = "MOBILE NUMBER" } })
+                                @Html.ValidationMessageFor(model => model.phone_number, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="card-group">
+                            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "sr-only" })
+                            <div class=" col">
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "EMAIL" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="card-group">
+                            @Html.LabelFor(model => model.dob, htmlAttributes: new { @class = "sr-only" })
+                            <div class=" col">
+                                @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control", @type = "date", @PlaceHolder = "DD-MM-YYYY" } })
+                                @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="card-group">
+                            @Html.LabelFor(model => model.city, htmlAttributes: new { @class = "sr-only" })
+                            <div class=" col">
+                                @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "CITY" } })
+                                @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="card-group">
+                            @Html.LabelFor(model => model.state, htmlAttributes: new { @class = "sr-only" })
+                            <div class=" col">
+                                @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "STATE" } })
+                                @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="card-group">
+                            @Html.LabelFor(model => model.pincode, htmlAttributes: new { @class = "sr-only" })
+                            <div class=" col">
+                                @Html.EditorFor(model => model.pincode, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "PINCODE", @maxlength = "6" } })
+                                @Html.ValidationMessageFor(model => model.pincode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="card-group">
+                            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "sr-only" })
+                            <div class="col">
+                                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "PASSWORD" } })
+                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="card-group">
+                            @Html.LabelFor(model => model.c_password, htmlAttributes: new { @class = "sr-only" })
+                            <div class="col">
+                                @Html.EditorFor(model => model.c_password, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "CONFORM NEW PASSWORD" } })
+                                @Html.ValidationMessageFor(model => model.c_password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="card-group">
+                            <div class="col">
+                                <input type="submit" value="SIGN UP" class="btn btn-block bg-warning" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-danger mt-5 mb-3 text-white">© 2020-2021</div>
+                </div>
+            }
+
+
+        </div>
+        <br /><br /><br />
+    </center>
+</section>

@@ -1,0 +1,61 @@
+﻿@model AdminDashBoard.Models.Plan
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_adminLayoutNew.cshtml";
+}
+
+<br />
+    <div class="card shadow mb-5">
+        <div class="card-header py-4" style="background-color:#fb3030">
+            <h6 class="m-0 font-weight-bold" style="text-align:center; font-weight:bold;color:black"> Are You sure you want to delete this Plan ? </h6>
+        </div>
+
+        <div class="form-horizontal">
+            <br />
+            <h3 class="text-danger" style="text-align:center; font-weight:bold; color:crimson"> Plan Name -  @Html.DisplayFor(model => model.plan_name) </h3>
+            <br />
+            <center>
+
+
+
+                <b style="text-align:center;">Description - </b> @Html.DisplayFor(model => model.plan_description) <br />
+
+
+                <b style="text-align:center;">Amount - </b> @Html.DisplayFor(model => model.amount)
+                <br />
+
+                <b style="text-align:center;">Validity - </b>   @Html.DisplayFor(model => model.validity)
+                <br />
+
+                <b style="text-align:center;">Plan Type - </b>  @Html.DisplayFor(model => model.plan_type)
+                <br />
+
+                <b style="text-align:center;"> Operator Name - </b>  @Html.DisplayFor(model => model.Operator.operator_name)
+                <br />
+
+
+
+
+
+
+            </center>
+        </div>
+        
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" style="text-align:center">
+                <br />
+                &nbsp; &nbsp;
+                <input type="submit" value="Delete" class="btn btn-primary" />
+                <br />
+                <br />
+
+            </div>
+        }
+
+    </div>
+
+   

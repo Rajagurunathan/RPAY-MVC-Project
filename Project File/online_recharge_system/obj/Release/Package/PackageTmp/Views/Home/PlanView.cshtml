@@ -1,0 +1,111 @@
+﻿@model IEnumerable<online_recharge_system.Plan>
+
+@{
+    Layout = "~/Views/Shared/_AUTHLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Allplans";
+}
+<section class="table-wrapper" style="background: linear-gradient(to left, #d3cce3, #e9e4f0); "><center>
+    <div class="col-sm-10 col-md-10 col-lg-10">
+        <br />
+        <table class="table table-bordered table-responsive-sm table-responsive-md table-hover">
+            <thead class="text-white" style="background: linear-gradient(to left, #41295a, #2f0743);">
+
+
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Operator.operator_name)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.plan_name)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.plan_type)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.plan_description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.amount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.validity)
+                    </th>
+
+
+
+
+
+                </tr>
+            </thead>
+            <tbody class="text-white" style="background: linear-gradient(to left, #cb356b, #bd3f32); ">
+
+
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Operator.operator_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.plan_name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.plan_type)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.plan_description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.validity)
+                        </td>
+
+
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <br />
+    <br />
+    <br />
+</center>
+</section>
+@{
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $("#txtsearch").on("keyup", function () {
+            var txtcenter = $(this).val();
+            $("table tr").each(function (results) {
+                if (results !== 0) {
+                    var id = $(this).find("td:nth-child(1)").text();
+
+                    if (id.indexOf(txtcenter) != 0 && id.toLowerCase().indexOf(txtcenter.toLowerCase()) < 0) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                }
+
+            });
+        })
+    </script>
+}

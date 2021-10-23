@@ -1,0 +1,102 @@
+﻿@using System.Web.UI.WebControls.WebParts
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<section>
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="3" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        <li data-target="#demo" data-slide-to="0"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/images/banner4jio.jpg" alt="New York" width="1100" height="500">
+            <div class="carousel-caption">
+                @*<h3>LIMITED</h3>
+                <p>OFFER</p>*@
+                <button type="button" id="btn" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+                    Notice
+                </button>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/images/banner3jio.jpg" alt="New York" width="1100" height="500">
+            <div class="carousel-caption">
+                @*<h3>LIMITED</h3>
+                <p>OFFER</p>*@
+                <button type="button" id="btn" class="btn btn-danger text-white" data-toggle="modal" data-target="#exampleModal">
+                    Notice
+                </button>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/images/banner1jio.jpg" alt="Los Angeles" width="1100" height="500">
+            <div class="carousel-caption">
+                @*<h3>LIMITED</h3>
+                <p>OFFER</p>*@
+                <button type="button" id="btn" class="btn btn-light text-black" data-toggle="modal" data-target="#exampleModal">
+                    Notice
+                </button>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/images/banner2jio.jpg" alt="Chicago" width="1100" height="500">
+            <div class="carousel-caption">
+                @*<h3>LIMITED</h3>
+                <p>OFFER</p>*@
+                <button type="button" id="btn" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+                    Notice
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+</section>
+<section>
+    <div class="swiper-container-autoheight">
+        <center>
+            @Html.Partial("_CardView")
+        </center>
+    </div>
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title justify-content-center" id="exampleModalLabel">Notice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>This Site is under Development</p>
+                <p>So,If your Actions Succeed Your will Receive An email</p>
+                <p>Else you will be Redirected To Home</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

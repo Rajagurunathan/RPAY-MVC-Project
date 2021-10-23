@@ -1,0 +1,192 @@
+﻿@model AdminDashBoard.Models.AdminLogin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<html>
+<head>
+
+    <style>
+       
+        .backd {
+            /* background-image: linear-gradient(to top right, #3f51b5, #e91e63);
+            background-color: #0070d1;*/
+            background-image: radial-gradient( circle farthest-corner at 0.5% 3.8%, rgba(127,204,241,1) 0.1%, rgba(85,156,186,1) 61.7%, rgba(45,100,222,1) 90% );
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Secular One', sans-serif;
+        }
+        import "bourbon";
+
+
+
+
+body {
+  background-color: $redFire;
+  font-family: $fontAsap;
+}
+
+.login {
+  overflow: hidden;
+  background-color: white;
+  padding: 40px 30px 30px 30px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  include transform(translate(-50%, -50%));
+  include transition(transform 300ms, box-shadow 300ms);
+  box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2);
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 45%;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 40%;
+    z-index: -1;
+  }
+
+  &::before {
+    left: 40%;
+    bottom: -130%;
+    background-color: rgba($blueQueen, 0.15);
+    include animation(wawes 6s infinite linear);
+  }
+
+  &::after {
+    left: 35%;
+    bottom: -125%;
+    background-color: rgba($greenSeaweed, 0.2);
+    include animation(wawes 7s infinite);
+  }
+
+  > input {
+    font-family: $fontAsap;
+    display: block;
+    border-radius: 5px;
+    font-size: 16px;
+    background: white;
+    width: 100%;
+    border: 0;
+    padding: 10px 10px;
+    margin: 15px -10px;
+  }
+
+  > button {
+    font-family: $fontAsap;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 80px;
+    border: 0;
+    padding: 10px 0;
+    margin-top: 10px;
+    margin-left: -5px;
+    border-radius: 5px;
+    background-color: $redFire;
+    include transition(background-color 300ms);
+
+    &:hover {
+      background-color: darken($redFire, 5%);
+    }
+  }
+}
+
+include keyframes (wawes) {
+  from { include transform(rotate(0)); }
+  to { include transform(rotate(360deg)); }
+}
+
+a {
+  text-decoration: none;
+  color: rgba(white, 0.6);
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 12px;
+}
+ </style>
+
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>SIGN IN</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+
+
+<body class="backd">
+    
+        <br /><br /><br />
+        <div class=" col-md-col col-lg-col-5 col-sm-col">
+
+            <center>
+                <div class=" col-lg-6 col-md-8 col-sm-10">
+                    <div class="card-header bg-dark"><h1 class="h3 mb-2 font-weight-normal text-center text-white">ADMIN SIGN IN</h1></div>
+                    <div class="card col text-center">
+                        @using (Html.BeginForm(new { @class = "" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <center>
+                                <div class="container">
+                                    <br />
+                                    <img class="mb-4" src="/images/teamlogo.png" alt="" width="72" height="72">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.admin_name, htmlAttributes: new { @class = "sr-only col-md-2" })
+                                        <div class="col">
+                                            @Html.EditorFor(model => model.admin_name, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "USER ID" } })
+                                            @Html.ValidationMessageFor(model => model.admin_name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.admin_password, htmlAttributes: new { @class = "sr-only col-md-2" })
+                                        <div class="col">
+                                            @Html.EditorFor(model => model.admin_password, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "PASSWORD" } })
+                                            @Html.ValidationMessageFor(model => model.admin_password, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Login" class="btn btn-block btn-success" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </center>
+                        }
+
+                    </div>
+                </div>
+
+            </center>
+        </div>
+    
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="mainconRC-Web.config Connection String" description="mainconRC Connection String used in web.config by the application to access the database." defaultValue="Data Source=SQL5080.site4now.net;Initial Catalog=DB_A68A18_minnanjal2500;User Id=DB_A68A18_minnanjal2500_admin;Password=Hero@007;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\sarav\\Documents\\Visual\ Studio\ 2019\\WEB\ API\\online_recharge_system\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='mainconRC']/@connectionString" />
+  </parameter>
+  <parameter name="operatorconnect-Web.config Connection String" description="operatorconnect Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Operators.csdl|res://*/Models.Operators.ssdl|res://*/Models.Operators.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SQL5080.site4now.net;initial catalog=DB_A68A18_minnanjal2500;user id=DB_A68A18_minnanjal2500_admin;password=Hero@007;multipleactiveresultsets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\sarav\\Documents\\Visual\ Studio\ 2019\\WEB\ API\\online_recharge_system\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='operatorconnect']/@connectionString" />
+  </parameter>
+  <parameter name="mainconRCEntities-Web.config Connection String" description="mainconRCEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/MyPlansModel.csdl|res://*/MyPlansModel.ssdl|res://*/MyPlansModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SQL5080.site4now.net;initial catalog=DB_A68A18_minnanjal2500;user id=DB_A68A18_minnanjal2500_admin;password=Hero@007;multipleactiveresultsets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\sarav\\Documents\\Visual\ Studio\ 2019\\WEB\ API\\online_recharge_system\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='mainconRCEntities']/@connectionString" />
+  </parameter>
+</parameters>

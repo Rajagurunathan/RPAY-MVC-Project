@@ -1,0 +1,95 @@
+﻿@model IEnumerable<AdminDashBoard.Models.Plan>
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_adminLayoutNew.cshtml";
+}
+
+<link href="~/css/table1.css" rel="stylesheet" type="text/css">
+
+<CENTER>
+
+
+    <div style="text-align:center" class="col-xl-5 col-md-8 mb-4">
+        <div class="card border-left-danger  shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-6">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align:center">  DELETE - PLANS </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-swap-opacity fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</CENTER>
+<br />
+
+<div class="table-wrapper">
+
+
+    <table class="table table-bordered table-hover fl-table ">
+        <thead>
+
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Operator.operator_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.plan_name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.plan_description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.amount)
+                </th>
+               
+                <th>
+                    @Html.DisplayNameFor(model => model.plan_type)
+                </th>
+              
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                      <td>
+                        @Html.DisplayFor(modelItem => item.Operator.operator_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.plan_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.plan_description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amount)
+                    </td>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.plan_type)
+                    </td>
+                  
+                    <td>
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.plan_id })
+                        &nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

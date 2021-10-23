@@ -1,0 +1,80 @@
+﻿@using System.Web.UI.WebControls
+@model online_recharge_system.Models.PasswordReset
+
+@{
+    Layout = null;
+    ViewBag.title = "VERIFY OTP";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Reset</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/Site.css" rel="stylesheet"/>
+</head>
+<body style="background-image: url(https://i.pinimg.com/originals/d8/88/05/d88805b68f7e5f56033fd161c6dfb687.gif)">
+
+<center>
+<div class="card swiper-container-android bg-warning" style="width: 500px">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4 class="card-header bg-danger text-white">VERIFICATION</h4>
+            <hr/>
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            <div class="form-group">
+                @Html.LabelFor(model => model.email, htmlAttributes: new {@class = "col-form-label" })
+                <div class="col">
+                    @Html.EditorFor(model => model.email, new {htmlAttributes = new {@class = "form-control",@PlaceHolder="EMAIL"}})
+                    @Html.ValidationMessageFor(model => model.email, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.password, htmlAttributes: new {@class = "col-form-label" })
+                <div class="col">
+                    @Html.EditorFor(model => model.password, new {htmlAttributes = new {@class = "form-control", @PlaceHolder = "NEW PASSWORD" } })
+                    @Html.ValidationMessageFor(model => model.password, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.c_password, htmlAttributes: new {@class = "col-form-label" })
+                <div class="col">
+                    @Html.EditorFor(model => model.c_password, new {htmlAttributes = new {@class = "form-control", @PlaceHolder = "CONFORM NEW PASSWORD" } })
+                    @Html.ValidationMessageFor(model => model.c_password, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.otp, htmlAttributes: new {@class = "col-form-label"})
+                <div class="col">
+                    @Html.EditorFor(model => model.otp, new {htmlAttributes = new {@class = "form-control", @PlaceHolder = "Received Otp" } })
+                    @Html.ValidationMessageFor(model => model.otp, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-form-label">
+                    <input type="submit" value="CHANGE PASSWORD" class="btn btn-success"/>
+                </div>
+                <div class="col">
+                    @Html.ActionLink("New Otp", "SendOtp", "PasswordReset",new{@class="btn btn-floating bg-info text-white"})
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</center>
+</body>
+</html>

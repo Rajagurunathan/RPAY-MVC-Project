@@ -1,0 +1,218 @@
+﻿@model IEnumerable<online_recharge_system.Models.ViewModel>
+@{
+    ViewBag.Title = "Recharge Now";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@{
+    <style type="text/css">
+        td:hover{
+            cursor: pointer;
+            }
+    </style>
+}
+<section style="background-color: #d99058;
+                                           background-image: linear-gradient(315deg, #d99058 0%, #f8de7e 74%);">
+    <div class="swiper-container-free-mode col-lg-9 col-md-8 col-sm-5">
+        <br/>
+        <br/>
+        <div class="swiper-container-multirow">
+            <div class="bg-danger">
+                <h6 class="text-capitalize center text-white btn-block">Recharge</h6>
+            </div>
+            <form id="Rechargeform" action="/RechargeMVC/RechargeView" method="post">
+                <table class="table table-striped bg-light table-responsive-sm" @*style="margin-left: auto; margin-right: auto"*@>
+                    <thead class="bg-dark text-white col-sm-4">
+                    <tr>
+                        <th scope="col">PHONE NUMBER</th>
+                        <th scope="col"><input class="form-control" type="text" id="Txt_phno" name="PhoneNumber"/></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">NETWORK OPERATOR</th>
+                        <td><input type="text" class="form-control" id="Txt_op" name="NetworkOperator"/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">PLAN CATEGORY</th>
+                        <td><input type="text" class="form-control" id="Txt_plan_type" name="PlanCategory"/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">PLAN NAME</th>
+                        <td><input type="text" class="form-control" id="Txt_plan_name" name="PlanName"/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">AMOUNT</th>
+                        <td><input type="number" class="form-control" id="Txt_amount" name="Amount"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <input type="submit" class="btn btn-block bg-success text-white" value="RECHARGE" id="Btn_recharge"/><br/><br/>
+            </form>
+        </div>
+
+        <br/>
+        <div class="container">
+            <table id="Plans" class="table table-bordered bg-light table-hover table-responsive-sm">
+                <tr>
+                    <thead class="bg-dark text-white col-sm-4">
+                    <th>
+                        NETWORK OPERATOR
+                        @*@Html.DisplayNameFor(model => model.operator_id)*@
+                    </th>
+                    <th>
+                        PLAN CATEGORY
+                        @*@Html.DisplayNameFor(model => model.plan_type)*@
+                    </th>
+                    <th>
+                        PLAN NAME
+                        @*@Html.DisplayNameFor(model => model.plan_name)*@
+                    </th>
+                    <th>
+                        PLAN BENEFITS
+                        @*@Html.DisplayNameFor(model => model.plan_description)*@
+                    </th>
+                    <th>
+                        VALIDITY
+                        @*@Html.DisplayNameFor(model => model.validity)*@
+                    </th>
+
+                    <th>
+                        AMOUNT
+                        @*@Html.DisplayNameFor(model => model.amount)*@
+                    </th>
+                    </thead>
+
+                </tr>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr class="striped">
+                        <td id="operator_name_data">
+                            @Html.DisplayFor(modelItem => item.op.operator_name)
+                        </td>
+
+                        <td id="plan_type_data">
+                            @Html.DisplayFor(modelItem => item.plan.plan_type)
+                        </td>
+
+                        <td id="plan_name_data">
+                            @Html.DisplayFor(modelItem => item.plan.plan_name)
+                        </td>
+
+                        <td id="plan_desc_data">
+                            @Html.DisplayFor(modelItem => item.plan.plan_description)
+                        </td>
+
+                        <td class="" id="plan_validity_data">
+                            @Html.DisplayFor(modelItem => item.plan.validity)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.plan.amount)
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+
+
+    </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            document.getElementById('Plans')
+                .addEventListener('click', function (item) {
+
+                    // To get tr tag
+                    // In the row where we click
+                    var row = item.path[1];
+
+                    var row_value = "";
+
+                    //for (var j = 0; j < row.cells.length; j++) {
+
+                    $("#Txt_op").val(jQuery.trim(row.cells[0].innerHTML));
+                    $("#Txt_plan_type").val(jQuery.trim(row.cells[1].innerHTML));
+                    $("#Txt_plan_name").val(jQuery.trim(row.cells[2].innerHTML));
+                    $("#Txt_amount").val(jQuery.trim(row.cells[5].innerHTML));
+
+                    //row_value += row.cells[0].innerHTML;
+                    //row_value += " | ";
+
+                    //row_value += row.cells[1].innerHTML;
+                    //row_value += " | ";
+
+                    //row_value += row.cells[2].innerHTML;
+                    //row_value += " | ";
+
+                    //row_value += row.cells[5].innerHTML.value;
+
+                    ////}
+
+                    //alert(row_value);
+
+
+                });
+
+
+            //$("#btn_amount").click(function () {
+
+
+            //        var $row = $(this).closest("tr");    // Find the row
+
+            //        $("#Txt_op").val($row.find("#operator_name_data").text()); // Find the text
+
+            //        $("#Txt_plan_type").val($row.find("#plan_type_data").text());
+
+            //        $("#Txt_plan_name").val($row.find("#plan_name_data").text());
+
+            //        $("#Txt_amount").val($row.find("#btn_amount").text());
+
+
+            //});
+
+
+
+            $("#Btn_recharge").click(function () {
+
+                //Serialize the form datas.
+                var valdata = $("#Rechargeform").serializeArray();
+
+                var obj = {
+                    phno: $("Txt__phno").val(),
+                    op: $("Txt_op").val(),
+                    plantype: $("Txt_plan_type").val(),
+                    planname: $("Txt_plan_name").val(),
+                    amount: $("Txt_amount").val()
+                };
+
+
+                $.ajax({
+                    url: "/RechargeMVC/RechargeView",
+                    type: "POST",
+                    dataType: 'json',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: obj,
+
+                    success: function (result) {
+
+                        alert("Success Function");
+
+                    }
+
+                });
+            });
+
+        });
+</script>
+
+

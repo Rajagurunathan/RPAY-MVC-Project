@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="online_recharge_system_Et" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Operator">
+    <Key>
+      <PropertyRef Name="operator_id" />
+    </Key>
+    <Property Name="operator_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="operator_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Plans" Relationship="Self.FK__Plans__operator___3A81B327" FromRole="Operator" ToRole="Plans" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__opera__5EBF139D" FromRole="Operator" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Plan">
+    <Key>
+      <PropertyRef Name="plan_id" />
+    </Key>
+    <Property Name="plan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="plan_name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="plan_description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="amount" Type="Int32" />
+    <Property Name="validity" Type="Int32" />
+    <Property Name="plan_type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="operator_id" Type="Int32" />
+    <NavigationProperty Name="Operator" Relationship="Self.FK__Plans__operator___3A81B327" FromRole="Plans" ToRole="Operator" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__plan___5DCAEF64" FromRole="Plans" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="transaction_id" />
+    </Key>
+    <Property Name="transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date_time" Type="DateTime" Precision="0" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="plan_id" Type="Int32" />
+    <Property Name="operator_id" Type="Int32" />
+    <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Operator" Relationship="Self.FK__Transacti__opera__5EBF139D" FromRole="Transactions" ToRole="Operator" />
+    <NavigationProperty Name="Plan" Relationship="Self.FK__Transacti__plan___5DCAEF64" FromRole="Transactions" ToRole="Plans" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Transacti__useri__5CD6CB2B" FromRole="Transactions" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="phone_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="dob" Type="DateTime" Precision="0" />
+    <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pincode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="balance" Type="Int32" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__useri__5CD6CB2B" FromRole="Users" ToRole="Transactions" />
+  </EntityType>
+  <Association Name="FK__Plans__operator___3A81B327">
+    <End Role="Operator" Type="Self.Operator" Multiplicity="0..1" />
+    <End Role="Plans" Type="Self.Plan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operator">
+        <PropertyRef Name="operator_id" />
+      </Principal>
+      <Dependent Role="Plans">
+        <PropertyRef Name="operator_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__opera__5EBF139D">
+    <End Role="Operator" Type="Self.Operator" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operator">
+        <PropertyRef Name="operator_id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="operator_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__plan___5DCAEF64">
+    <End Role="Plans" Type="Self.Plan" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plans">
+        <PropertyRef Name="plan_id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="plan_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__useri__5CD6CB2B">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mainconRCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Operators" EntityType="Self.Operator" />
+    <EntitySet Name="Plans" EntityType="Self.Plan" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Plans__operator___3A81B327" Association="Self.FK__Plans__operator___3A81B327">
+      <End Role="Operator" EntitySet="Operators" />
+      <End Role="Plans" EntitySet="Plans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__opera__5EBF139D" Association="Self.FK__Transacti__opera__5EBF139D">
+      <End Role="Operator" EntitySet="Operators" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__plan___5DCAEF64" Association="Self.FK__Transacti__plan___5DCAEF64">
+      <End Role="Plans" EntitySet="Plans" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__useri__5CD6CB2B" Association="Self.FK__Transacti__useri__5CD6CB2B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

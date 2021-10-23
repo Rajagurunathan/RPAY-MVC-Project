@@ -1,0 +1,106 @@
+﻿@model AdminDashBoard.Models.Transaction
+
+@{
+    ViewBag.Title = "EditWithId";
+    Layout = "~/Views/Shared/_adminLayoutNew.cshtml";
+}
+    <div class="card shadow mb-5">
+        <div class="card-header py-4" style="background-color:#2b2525">
+            <h6 class="m-0 font-weight-bold" style="text-align:center; font-weight:bold; color:white"> EDIT TRANSACTION </h6>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+             
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.transaction_id)
+
+
+            <!-- Date Time -->
+            <br />
+            <h5 class="text-danger" style="font-weight:bold; color:crimson; text-align:center"> Date Time  </h5>
+
+                <div class="form-group" style="text-align:center; margin:0 auto; width:300px">
+                  
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.date_time, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.date_time, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+             <!-- User Name -->
+            <br />
+            <h5 class="text-danger" style="font-weight:bold; color:crimson; text-align:center"> User Name  </h5>
+
+                <div class="form-group" style="text-align:center; margin:0 auto; width:300px">
+                  
+                    <div class="col-md-12">
+                        @Html.DropDownList("userid", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.userid, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+              <!-- Plan Name -->
+            <br />
+            <h5 class="text-danger" style="font-weight:bold; color:crimson; text-align:center"> Plan Name  </h5>
+
+                <div class="form-group" style="text-align:center; margin:0 auto; width:300px">
+                  
+                    <div class="col-md-12">
+                        @Html.DropDownList("plan_id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.plan_id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+              <!-- Operator Name  -->
+            <br />
+            <h5 class="text-danger" style="font-weight:bold; color:crimson; text-align:center"> Operator Name  </h5>
+
+                <div class="form-group" style="text-align:center; margin:0 auto; width:300px">
+                 
+                    <div class="col-md-12">
+                        @Html.DropDownList("operator_id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.operator_id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+               <!-- Phone Number  -->
+            <br />
+            <h5 class="text-danger" style="font-weight:bold; color:crimson; text-align:center"> Phone Number  </h5>
+                <div class="form-group" style="text-align:center; margin:0 auto; width:300px" >
+                  
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.phone_number, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phone_number, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- Status  -->
+            <br />
+            <h5 class="text-danger" style="font-weight:bold; color:crimson; text-align:center"> status  </h5>
+
+                <div class="form-group" style="text-align:center; margin:0 auto; width:300px">
+                   
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="text-align:center">
+                    <div class="col-md-offset-2 col-md-10">
+                        <br />
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="submit" value="Save" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        
+</div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

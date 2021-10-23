@@ -1,0 +1,39 @@
+﻿@using System.Web.UI.WebControls
+@model online_recharge_system.Models.PasswordReset
+
+@{
+    Layout = "../Shared/_AUTHLayout.cshtml";
+    ViewBag.title = "Reset Password";
+}
+
+<section class="container-fluid" style="background: rgba(254,227,225,1);">
+    <br /><br /><br /><br /><br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="container-sm col-lg-4 col-md-4 justify-content-center">
+            <div class="card">
+                <div class="card-header bg-danger text-white">FORGOT PASSWORD</div>
+                <center>
+                    <div class="card-body justify-content-center">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="card-group justify-content-center">
+                            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "sr-only col-md-2" })
+                            <div class="col justify-content-center">
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "EMAIL" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="card-group justify-content-center">
+                            <div class="col justify-content-center">
+                                <input type="submit" value="Send Otp" class="btn btn-floating btn-block bg-warning" />
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    }<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</section>
+     
+

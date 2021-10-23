@@ -1,0 +1,176 @@
+﻿@model IEnumerable<AdminDashBoard.Models.Plan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_adminLayoutNew.cshtml";
+}
+    <html>
+
+
+    <head>
+        <link href="~/css/table1.css" rel="stylesheet" type="text/css">
+
+       
+    </head>
+    <body>
+
+
+
+        <CENTER>
+
+
+            <div style="text-align:center" class="col-xl-5 col-md-8 mb-4">
+                <div class="card border-left-primary  shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-6">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align:center">  LIST OF PLANS </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-swap-opacity fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </CENTER>
+
+        <br />
+
+        <center>
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+
+                    <input type="text" id="txtsearch" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+
+
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+
+        </center>
+
+        <br />
+
+        <div class="table-wrapper">
+
+
+
+            <table class="table table-bordered table-hover fl-table ">
+                <thead>
+
+
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Operator.operator_name)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.plan_name)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.plan_type)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.plan_description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.amount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.validity)
+                        </th>
+
+
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Operator.operator_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.plan_name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.plan_type)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.plan_description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.validity)
+                            </td>
+
+
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </body>
+    </html>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+
+
+
+      
+
+          
+
+
+            $("#txtsearch").on("keyup", function () {
+                var txtcenter = $(this).val();
+                $("table tr").each(function (results) {
+                    if (results !== 0) {
+                        var id = $(this).find("td:nth-child(1)").text();
+
+                        if (id.indexOf(txtcenter) != 0 && id.toLowerCase().indexOf(txtcenter.toLowerCase()) < 0) {
+                            $(this).hide();
+                        }
+                        else {
+                            $(this).show();
+                        }
+                    }
+
+                });
+            })
+        
+    </script>

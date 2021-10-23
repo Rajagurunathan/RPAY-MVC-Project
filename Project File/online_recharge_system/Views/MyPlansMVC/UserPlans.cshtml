@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "My Plans";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<section style="background-image: linear-gradient(to left bottom, #586b9f, #528dba, #59aecc, #76ced7, #a1ede0);">
+    <div class="swiper-container-coverflow col-lg-10 col-md-8">
+        <div class="card swiper-container">
+            <div class="card-title">
+                <h3 class="bg-danger text-white">MY PLANS</h3>
+                <h4 class="alert-danger text-black">CURRENT PLAN</h4>
+            </div>
+            <div class="card-body alert-primary">
+                @*<ul>
+                        $1$<li><b>User Name :</b> @ViewBag.name</li>#1#
+                        <li ><b>Network Operator :</b> @ViewBag.operatorname</li>
+                        <li ><b>Phone Number :</b> @ViewBag.phone</li>
+                        <li><b>Plan Name :</b> @ViewBag.planname </li>
+                        <li><b>Plan Name :</b> @ViewBag.plandesc</li>
+                        <li><b>Amount :</b> @ViewBag.amount</li>
+                        <li><b>Validity :</b> @ViewBag.validity</li>
+                        <li><b>Recharged Date :</b> @ViewBag.date</li>
+                    </ul>*@
+                <!--Table-->
+                <table class="table table-striped table-responsive-sm table-bordered table-hover">
+                    <!--Table head-->
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>#</th>
+                            <th>Network Operator</th>
+                            <th>Phone Number</th>
+                            <th>Plan Name</th>
+                            <th>Plan Benefits</th>
+                            <th>Amount</th>
+                            <th>Validity</th>
+                            <th>Recharged Date</th>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
+                    <!--Table body-->
+                    <tbody class="bg-danger text-white">
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>@ViewBag.operatorname</td>
+                            <td>@ViewBag.phone</td>
+                            <td>@ViewBag.planname</td>
+                            <td>@ViewBag.plandesc</td>
+                            <td>@ViewBag.amount</td>
+                            <td>@ViewBag.validity</td>
+                            <td>@ViewBag.date</td>
+                        </tr>
+                    </tbody>
+                    <!--Table body-->
+                </table>
+                <!--Table-->
+            </div>
+        </div>
+        <div class="swiper-container-multirow">
+
+            <h3 class="alert-primary">Transaction History</h3>
+
+            <table id="Table_plan" class="table responsive-table table-responsive-sm table-striped bg-danger text-white table-bordered">
+                <thead class="bg-dark text-white sticky-top">
+
+                    <tr>
+                        @*<th>Name</th>*@
+                        <th>Operator Name</th>
+                        <th>Phone Number</th>
+                        <th>Plan Name</th>
+                        <th>Plan Benefits</th>
+                        <th>Amount</th>
+                        <th>Validity</th>
+                        <th>Recharged Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<td>@item.user.name</td>*@
+                            <td>@item.op.operator_name</td>
+                            <td>@item.transact.phone_number</td>
+                            <td>@item.plan.plan_name</td>
+                            <td>@item.plan.plan_description</td>
+                            <td>@item.plan.amount</td>
+                            <td>@item.plan.validity</td>
+                            <td>@item.transact.date_time</td>
+                            <td>@item.transact.status</td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>

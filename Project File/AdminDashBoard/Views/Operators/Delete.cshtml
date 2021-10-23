@@ -1,0 +1,35 @@
+﻿@model AdminDashBoard.Models.Operator
+
+@{
+    ViewBag.Title = "DeleteWithId";
+    Layout = "~/Views/Shared/_adminLayoutNew.cshtml";
+}
+
+<div class="card shadow mb-5">
+    <div class="card-header py-4" style="background-color:#fb3030">
+        <h6 class="m-0 font-weight-bold" style="text-align:center; font-weight:bold;color:black"> Are You sure you want to delete this Operator ? </h6>
+    </div>
+
+    <div class="form-horizontal">
+        <br />
+        <h3 class="text-danger" style="text-align:center; font-weight:bold; color:crimson">  @Html.DisplayFor(model => model.operator_name) </h3>
+
+
+
+        <br />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" style="text-align:center">
+                 &nbsp; &nbsp;
+                <input type="submit" value="Delete" class="btn btn-primary" />
+                <br />
+
+            </div>
+        }
+        <br />
+    </div>
+
+</div>
+@Html.ActionLink("Back to List", "Index")

@@ -1,0 +1,71 @@
+﻿@using System.Net.Mail
+@using System.Web.UI.WebControls
+@using iTextSharp.text
+@model online_recharge_system.Models.UserLogin
+@{
+    Layout = "~/Views/Shared/_AUTHLayout.cshtml";
+}
+@{
+    ViewBag.Title = "SIGN IN";
+}
+<section style="background: rgb(238,232,174);
+                                      background: radial-gradient(circle, rgba(238,232,174,1) 0%, rgba(233,185,148,1) 100%);">
+    <div class="swiper-container-cube">
+        <br /><br />
+        @using (Html.BeginForm("ULogin", "UserLogin", FormMethod.Post, new { enctype = "multiport/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <center>
+                <div class="card container col-sm-6 col-md-6 col-lg" style="width: 350px">
+                    <h1 class="card-header bg-danger text-white h3 mb-3 font-weight-normal">USER SIGN IN</h1>
+                    <center>
+                        <img class="card-img-top" style="width: 200px" src="~/images/usercard.jpg" width="150px%" height="50%" alt="">
+                    </center>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "sr-only col-md-2" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "EMAIL ID" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "sr-only col-md-2" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "PASSWORD" } })
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col">
+                            <input type="submit" value="sign in" class="btn btn-block btn-outline-success" />
+                        </div>
+                        <br />
+                        <div class="col">
+                            <a class="btn btn-block btn-outline-danger" href="@Url.Action("SendOtp", "PasswordReset")">
+                                Forgot Password
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </center>
+        }
+        <div>
+        </div>
+        <br /><br /><br /><br />
+    </div>
+</section>
+@{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+}
+
+
+
+

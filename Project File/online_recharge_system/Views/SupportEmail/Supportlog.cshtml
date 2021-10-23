@@ -1,0 +1,59 @@
+﻿@model online_recharge_system.Models.SupportEmail
+@{
+    ViewBag.Title = "Supportlog";
+    Layout = "~/Views/Shared/_AUTHLayout.cshtml";
+}
+<section style="background: linear-gradient(to left, #2193b0, #6dd5ed); ">
+    <div class="swiper-container col-md-5 col-lg-7 col-sm-7">
+        <br />
+        <br />
+        @using (Html.BeginForm("Supportlog", "SupportEmail", FormMethod.Post, new { enctype = "multiport/form-data" }))
+        {
+            <center>
+                <div class="card container col-md-5 col-lg-7 col-sm-7">
+                    <div class="card-footer bg-warning">
+                        <h4 class="text-white">SUPPORT</h4>
+                    </div>
+                    <div class="card-body" style="background-color: #ffbd77;background-image: linear-gradient(319deg, #ffbd77 0%, #f0f4a4 37%, #acfcd9 100%);">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <div class="col">
+                                    <label>Your Email</label>
+                                </div>
+                                <div class="col">
+                                    @Html.TextBoxFor(model => model.to, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <div class="col">
+                                    <label>Your Name</label>
+                                </div>
+                                <div class="col">
+                                    @Html.TextBoxFor(model => model.subject, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <div class="col">
+                                    <label>Support</label>
+                                </div>
+                                <div class="col">
+                                    @Html.TextAreaFor(model => model.body, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <input id="Button1" class="btn btn-block btn-danger" type="submit" value="sendmail" />
+                        </div>
+                    </div>
+                    <h5 class="bg-warning">@ViewBag.support</h5>
+                </div>
+            </center>
+        }
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+</section>

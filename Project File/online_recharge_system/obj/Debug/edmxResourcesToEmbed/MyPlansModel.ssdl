@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="online_recharge_system_Et.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Operator">
+    <Key>
+      <PropertyRef Name="operator_id" />
+    </Key>
+    <Property Name="operator_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="operator_name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Plans">
+    <Key>
+      <PropertyRef Name="plan_id" />
+    </Key>
+    <Property Name="plan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="plan_name" Type="varchar" MaxLength="250" />
+    <Property Name="plan_description" Type="varchar" MaxLength="250" />
+    <Property Name="amount" Type="int" />
+    <Property Name="validity" Type="int" />
+    <Property Name="plan_type" Type="varchar" MaxLength="100" />
+    <Property Name="operator_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="transaction_id" />
+    </Key>
+    <Property Name="transaction_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date_time" Type="date" />
+    <Property Name="userid" Type="int" />
+    <Property Name="plan_id" Type="int" />
+    <Property Name="operator_id" Type="int" />
+    <Property Name="phone_number" Type="varchar" MaxLength="20" />
+    <Property Name="status" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="20" />
+    <Property Name="phone_number" Type="varchar" MaxLength="10" />
+    <Property Name="email" Type="varchar" MaxLength="25" />
+    <Property Name="dob" Type="date" />
+    <Property Name="city" Type="varchar" MaxLength="20" />
+    <Property Name="state" Type="varchar" MaxLength="20" />
+    <Property Name="pincode" Type="varchar" MaxLength="6" />
+    <Property Name="password" Type="varchar" MaxLength="20" />
+    <Property Name="balance" Type="int" />
+  </EntityType>
+  <Association Name="FK__Plans__operator___3A81B327">
+    <End Role="Operator" Type="Self.Operator" Multiplicity="0..1" />
+    <End Role="Plans" Type="Self.Plans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operator">
+        <PropertyRef Name="operator_id" />
+      </Principal>
+      <Dependent Role="Plans">
+        <PropertyRef Name="operator_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__opera__5EBF139D">
+    <End Role="Operator" Type="Self.Operator" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operator">
+        <PropertyRef Name="operator_id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="operator_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__plan___5DCAEF64">
+    <End Role="Plans" Type="Self.Plans" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plans">
+        <PropertyRef Name="plan_id" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="plan_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__useri__5CD6CB2B">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="online_recharge_system_EtStoreContainer">
+    <EntitySet Name="Operator" EntityType="Self.Operator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Plans__operator___3A81B327" Association="Self.FK__Plans__operator___3A81B327">
+      <End Role="Operator" EntitySet="Operator" />
+      <End Role="Plans" EntitySet="Plans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__opera__5EBF139D" Association="Self.FK__Transacti__opera__5EBF139D">
+      <End Role="Operator" EntitySet="Operator" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__plan___5DCAEF64" Association="Self.FK__Transacti__plan___5DCAEF64">
+      <End Role="Plans" EntitySet="Plans" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__useri__5CD6CB2B" Association="Self.FK__Transacti__useri__5CD6CB2B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

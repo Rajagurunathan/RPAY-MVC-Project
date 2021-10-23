@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SIMOPERATORStoreContainer" CdmEntityContainer="operatorconnect">
+    <EntitySetMapping Name="Operators">
+      <EntityTypeMapping TypeName="SIMOPERATOR.Operator">
+        <MappingFragment StoreEntitySet="Operator">
+          <ScalarProperty Name="operator_id" ColumnName="operator_id" />
+          <ScalarProperty Name="operator_name" ColumnName="operator_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

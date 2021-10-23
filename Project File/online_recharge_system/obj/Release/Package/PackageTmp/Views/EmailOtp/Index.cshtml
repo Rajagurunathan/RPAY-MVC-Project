@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<div>
+    <div class="container">
+
+    </div>
+    @using (Html.BeginForm("SendOtp", "EmailOtp", FormMethod.Post, new {enctype = "multiport/form-data"}))
+    {
+        <input id="Button1" class="btn btn-danger" type="submit" value="sendmail"/>
+        <hr/>
+
+    }
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AdminDashBoard.Models.Operator>
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_adminLayoutNew.cshtml";
+}
+<html>
+
+<head>
+    <style>
+        .back {
+            background-image: url('https://img.freepik.com/free-photo/white-gray-studio-background_28629-814.jpg?size=626&ext=jpg&ga=GA1.2.954746853.1562386951');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="back">
+
+
+    <br />
+   
+
+        
+    <div class="row">
+
+
+        @foreach (var item in Model)
+        {
+
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> </div>
+                                <div class="h5 mb-0 font-weight-bold text-dark-800 text-capitalize bg-light" style="text-align:center">  @Html.DisplayFor(modelItem => item.operator_name)  </div>
+                            </div>
+
+                        </div>
+                        <div style="text-align:center"><br />
+                            @Html.ActionLink("EDIT", "Edit", new { id = item.operator_id }, new { @class = "btn bg-warning text-white" })
+
+                            &nbsp;&nbsp; @Html.ActionLink("DELETE", "Delete", new { id = item.operator_id }, new { @class = "btn bg-danger text-white" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        }
+
+    </div>
+</body>
+</html>

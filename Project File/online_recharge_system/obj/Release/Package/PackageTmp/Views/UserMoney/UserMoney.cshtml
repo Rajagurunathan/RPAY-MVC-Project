@@ -1,0 +1,75 @@
+﻿@using System.Web.UI.WebControls
+@model online_recharge_system.Models.UserMoney
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@{
+    ViewBag.Title = "My Wallet";
+}
+<section style="background-color: #e2c9be;background-image: linear-gradient(315deg, #e2c9be 0%, #fbf7e9 74%);
+                                  ">
+    <br />   <br />   <br />   
+    <div class="container col-sm-4 col-md-4 col-lg-4 ">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="card bg-light">
+                <div class="card-header bg-danger">
+                    <h5 class="text-white">Rpay WALLET</h5>
+                </div>
+                <div class="card-body">
+                    <img src="~/images/Inline_preview.jpg" class="card-img-top" style="height: 150px" />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="card-group">
+                        @Html.LabelFor(model => model.cc, htmlAttributes: new { @class = "sr-only" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.cc, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "CREDIT CARD NUMBER", @maxlength = "16" } })
+                            @Html.ValidationMessageFor(model => model.cc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="card-group">
+                        @Html.LabelFor(model => model.ccv, htmlAttributes: new { @class = "sr-only" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.ccv, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "ENTER CCV", @maxlength = "3" } })
+                            @Html.ValidationMessageFor(model => model.ccv, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="card-group">
+                        @Html.LabelFor(model => model.exp, htmlAttributes: new { @class = "sr-only" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.exp, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "EXPIRY MM/YY", @maxlength = "7" } })
+                            @Html.ValidationMessageFor(model => model.exp, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="card-group">
+                        @Html.LabelFor(model => model.addamount, htmlAttributes: new { @class = "sr-only" })
+                        <div class="col">
+                            @Html.EditorFor(model => model.addamount, new { htmlAttributes = new { @class = "form-control", @PlaceHolder = "ADD AMOUNT" } })
+                            @Html.ValidationMessageFor(model => model.addamount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-danger">
+                    <div class="col">
+                        <input type="submit" value="ADD MONEY" class="btn btn-floating bg-success text-white" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <br />   <br />   <br />   <br />
+</section>
+@*
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</div>
+*@
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
